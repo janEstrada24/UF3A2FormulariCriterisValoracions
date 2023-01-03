@@ -9,4 +9,8 @@ export class Rubrica implements IRubrica<ICriteri<IValoracio>> {
     constructor() {
         this.criteris = new Array<Criteri>;
     }
+
+    getLongitudCriteris() {
+        return this.criteris.length;
+    }
 }

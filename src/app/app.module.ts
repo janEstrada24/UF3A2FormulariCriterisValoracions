@@ -12,11 +12,11 @@ import { RubricaComponent } from './Projecte/Components/rubrica/rubrica.componen
     AppComponent,
     ValoracioComponent,
     CriteriComponent,
-    RubricaComponent
+    RubricaComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

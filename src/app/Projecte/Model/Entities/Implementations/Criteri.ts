@@ -3,9 +3,9 @@ import { IValoracio } from "../Interfaces/IValoracio";
 
 export class Criteri implements ICriteri<IValoracio> {
     nom!: string;
-    valoracions: Array<IValoracio> = new Array<IValoracio>();
-    constructor(nom:string, valoracions: Array<IValoracio>) {
+    valoracions: Array<IValoracio>;
+    constructor(nom:string) {
         this.nom = nom;
-        this.valoracions = valoracions;
+        this.valoracions = new Array<IValoracio>();
     }
 }
