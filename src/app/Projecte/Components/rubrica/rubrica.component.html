@@ -5,16 +5,17 @@
     </div>
 </form>-->
 
-<div class="contenidor">
-    <label> Criteri:
-        <input type="text" placeholder="Insereix un criteri">
-    </label>
+<div #contenidorRubrica>
+    <div>
+        <label> Criteri:
+            <input type="number" placeholder="Afegeix una nota">
+        </label>
+    </div>
+    <!--<app-criteri></app-criteri>-->
 </div>
-<label> Criteri:
-    <input type="text" placeholder="Insereix un criteri">
-</label>
 
+<br>
 
-<button class="botoCriteri" (click)="afegirCriteri()">
+<button #botoCriteri (click)="afegirCriteri()">
     +
 </button>

@@ -1,1 +1,15 @@
-<p>criteri works!</p>
+
+<form [formGroup] ="this.criteriForm" (ngSubmit)="onSubmit()">
+    <label>Codi
+        <input type="text" formControlName="codi">
+        <label *ngIf="this.criteriForm">
+            El codi és incorrecte
+        </label>
+        <label *ngIf="this.criteriForm.controls['codi'].errors?.['minlength']">
+            La longitud mínima
+        </label>
+    </label>
+    <label>Titol
+        <input type="text" formControlName="titol">
+    </label>
+</form>
