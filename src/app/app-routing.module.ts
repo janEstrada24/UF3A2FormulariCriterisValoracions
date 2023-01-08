@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RubricaComponent } from './Projecte/Components/rubrica/rubrica.component';
+import { CriteriComponent } from './Projecte/Components/criteri/ReactiveForms/criteri/criteri.component';
 
 const routes: Routes = [
-  { path: 'rubrica', component: RubricaComponent },
+  { path: 'criteri', component: CriteriComponent },
 ];
 
 @NgModule({

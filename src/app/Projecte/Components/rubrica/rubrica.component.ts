@@ -1,6 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { Rubrica } from '../../Model/Entities/Implementations/Rubrica';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-rubrica',
@@ -20,9 +19,12 @@ export class RubricaComponent implements OnInit {
 
   public getLongitud() { return this.rubrica.getLongitudCriteris(); }
 
-
   afegirCriteri() {
     const div: HTMLDivElement = this.renderer.createElement('div');
+
+    const tr: HTMLTableRowElement = this.renderer.createElement('tr');
+    const td: HTMLTableCellElement = this.renderer.createElement('td');
+
     const hr: HTMLHRElement = this.renderer.createElement('hr');
     const br: HTMLBRElement = this.renderer.createElement('br'); 
 
@@ -47,7 +49,6 @@ export class RubricaComponent implements OnInit {
     div.appendChild(botoValoracio);
 
     this.renderer.appendChild(this.div.nativeElement, div);
-    
   }
 
   escriuJSON() {

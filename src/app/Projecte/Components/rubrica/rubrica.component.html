@@ -1,17 +1,15 @@
 <p>rubrica works!</p>
 
-<!--<form action="">
-    <div *ngFor="let criteri of getLongitud(); let colIndex = index">
-    </div>
-</form>-->
-
 <div #contenidorRubrica>
     <div>
         <label> Criteri:
             <input type="number" placeholder="Afegeix una nota">
         </label>
     </div>
-    <!--<app-criteri></app-criteri>-->
+    <button #botoValoracio (click)="afegirCriteri()">
+        +
+    </button>
+    <app-criteri></app-criteri>
 </div>
 
 <br>

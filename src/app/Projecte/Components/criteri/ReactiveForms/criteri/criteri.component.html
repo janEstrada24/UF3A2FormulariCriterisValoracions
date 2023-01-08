@@ -1,15 +1,26 @@
-
-<form [formGroup] ="this.criteriForm" (ngSubmit)="onSubmit()">
-    <label>Codi
-        <input type="text" formControlName="codi">
-        <label *ngIf="this.criteriForm">
-            El codi és incorrecte
-        </label>
-        <label *ngIf="this.criteriForm.controls['codi'].errors?.['minlength']">
-            La longitud mínima
-        </label>
-    </label>
-    <label>Titol
-        <input type="text" formControlName="titol">
-    </label>
-</form>
+<table #contenidorRubrica border="1">
+    <tr id="fila">
+        <td>            
+            <form [formGroup] ="this.criteriForm" (ngSubmit)="onSubmit()">
+                <label>Nom criteri: 
+                    <input type="text" formControlName="nomCriteri" placeholder="Escriu el nom del criteri">
+                    <label *ngIf="this.getControlNomCriteri().invalid">
+                        El nom és obligatori
+                    </label>
+                    <label *ngIf="this.criteriForm.controls['nomCriteri'].errors?.['minlength']">
+                        La longitud mínima
+                    </label>
+                </label>
+            </form>
+            <button #botoCriteri [disabled]="!this.criteriForm.valid" (click)="afegirCriteri()">
+                +
+            </button>
+        </td>
+        <td>
+            <button #botoValoracio [disabled]="!this.criteriForm.valid">
+                Afegir Valoracio
+            </button>
+        </td>
+    </tr>
+    
+</table>
