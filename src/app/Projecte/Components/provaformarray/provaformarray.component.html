@@ -1,0 +1,104 @@
+<div>
+<p>provaformarray works!</p>
+<fieldset formArrayName="infoProduct" class="mb-3">
+
+    <div class="row">
+
+      <fieldset class="col-md-12" name="size" *ngFor="let info of infos.controls; let i = index"
+        style="vertical-align: middle" [formGroupName]="i">
+
+        <div formArrayName="size" class="mb-3">
+
+          <fieldset class="col-md-12" name="size" *ngFor="let zise of sizes.controls; let i = index"
+            style="vertical-align: middle" [formGroupName]="i">
+
+            <div class="row">
+
+              <div class="col-md-6 form-group">
+
+                <input type="number" class="form-control" id="size" name="size" placeholder="Tamaño"
+                  formControlName="size" />
+
+              </div>
+
+            </div>
+
+            <div class="col-md-6 form-group">
+
+              <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock"
+                formControlName="stock" />
+
+            </div>
+
+            <div class="form-group">
+
+              <a class="genric-btn info-border small" (click)="removeSizes(i)">
+
+                <button fas icon="minus-circle">-</button>Eliminar
+
+              </a>
+
+            </div>
+
+          </fieldset>
+
+          <a class="genric-btn info-border small" (click)="addSizes()">
+
+            <button far icon="plus-square">+</button>Agregar
+
+          </a>
+
+        </div>
+
+        <div class="form-group">
+
+          <!--<ckeditor [editor]="Editor" [config]="config" data="data" formControlName="description">
+          </ckeditor>
+
+           <textarea class="form-control" id="description" name="description" placeholder="Descripcion"
+              cols="30" rows="4" formControlName="description"></textarea> -->
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-6 form-group">
+
+            <color-circle formControlName="color"></color-circle>
+
+          </div>
+
+          <div class="col-md-6 form-group">
+
+            <input type="number" class="form-control" id="price" name="price" placeholder="Precio"
+              formControlName="price" />
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+
+          <a class="genric-btn info-border small" (click)="removeInfos(i)">
+
+            <button fas icon="minus-circle">-</button>Eliminar
+
+          </a>
+
+        </div>
+
+        <hr>
+
+      </fieldset>
+
+    </div>
+
+    <a class="genric-btn info-border small" (click)="addInfos()">
+
+      <button far icon="plus-square">+</button>Agregar
+
+    </a>
+
+  </fieldset>
+
+</div>

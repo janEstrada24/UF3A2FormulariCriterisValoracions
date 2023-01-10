@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Criteri } from 'src/app/Projecte/Model/Entities/Implementations/Criteri';
 
 @Component({
   selector: 'app-criteri',
@@ -7,24 +8,45 @@ import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } 
   styleUrls: ['./criteri.component.css']
 })
 export class CriteriComponent implements OnInit {
-  criteriForm!: FormGroup;
+  //criteriForm!: FormGroup;
+  valoracioForm!: FormGroup;
   @ViewChild('contenidorRubrica') table: ElementRef;
 
   constructor(private fb: FormBuilder, private renderer: Renderer2) { }
 
   ngOnInit(): void {
-    this.criteriForm = this.fb.group({
-      nomCriteri: ['',
-        {
-          validators: [
-            Validators.required,
-            Validators.minLength(7),
-          ]
-        }],
-    });
+    
   }
   
+  criteriForm = this.fb.group({
+    nomCriteri: ['',
+      {
+        validators: [
+          Validators.required,
+          Validators.minLength(7),
+        ]
+      }],
+    
+    valoracions: this.fb.array([
+      
+    ]),
+  });
+
+  get newInfo(): FormGroup {
+    return this.fb.group({
+      nom: [''],
+      nota: ['0'],
+    })
+  }
+
+  get infos(): FormArray {
+    return this.criteriForm.get('valoracions') as FormArray;
+  }
+
   afegirCriteri() {
+    
+    let criteri: Criteri = new Criteri("");
+
     const fila: HTMLTableRowElement = this.renderer.createElement('tr');
     const casella1: HTMLTableCellElement = this.renderer.createElement('td');
     const casella2: HTMLTableCellElement = this.renderer.createElement('td');
@@ -56,13 +78,25 @@ export class CriteriComponent implements OnInit {
     fila.appendChild(casella1);
     fila.appendChild(casella2);
 
-    if(!this.criteriForm.valid) {
+    if(input.innerHTML == "") {
+      input.addEventListener("change", ()=> localStorage.setItem("", "inputCriteri"));
       botoCriteri.disabled = true;
-    } else {
+    } else if (input.innerHTML != "") {
+      input.addEventListener("change", ()=> localStorage.setItem(input.innerHTML, "inputCriteri"));
+    } 
+    else {
       botoCriteri.disabled = false;
     }
+
+/*    let prova = localStorage.getItem("inputCriteri");
+    input.addEventListener("change", () => this.mostrar(prova));*/
+    
     this.renderer.appendChild(this.table.nativeElement, fila);
 
+  }
+  
+  mostrar(contingut: String) {
+    console.log(contingut);
   }
 
   afegirValoracio(fila: HTMLTableRowElement) {
@@ -77,7 +111,7 @@ export class CriteriComponent implements OnInit {
 
     const input: HTMLInputElement = this.renderer.createElement('input');
     input.placeholder = "Afegeix una nota";
-    input.type = "number";
+    input.type = "text";
     
     const labelRadio: HTMLLabelElement = this.renderer.createElement('label');
     labelRadio.innerHTML = "Marcar Valoracio: "
@@ -97,7 +131,7 @@ export class CriteriComponent implements OnInit {
     casella.appendChild(labelRadio);
 
     //div.appendChild(botoValoracio);
-    fila.appendChild(casella)
+    fila.appendChild(casella);
     //this.renderer.appendChild(this.table.nativeElement, fila);
   }
 

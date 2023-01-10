@@ -7,6 +7,10 @@ import { ValoracioComponent } from './Projecte/Components/valoracio/template-dri
 import { RubricaComponent } from './Projecte/Components/rubrica/rubrica.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CriteriComponent } from './Projecte/Components/criteri/ReactiveForms/criteri/criteri.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from  '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ProvaformarrayComponent } from './Projecte/Components/provaformarray/provaformarray.component';
 
 @NgModule({
   declarations: [
@@ -14,12 +18,16 @@ import { CriteriComponent } from './Projecte/Components/criteri/ReactiveForms/cr
     ValoracioComponent,
     RubricaComponent,
     CriteriComponent,
+    ProvaformarrayComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

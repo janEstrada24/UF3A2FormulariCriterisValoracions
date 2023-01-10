@@ -1,5 +1,16 @@
-<table #contenidorRubrica border="1">
-    <tr id="fila">
+<button #botoCriteri (click)="afegirCriteri()">
+    Afegir Criteri
+</button>
+
+<hr>
+
+<fieldset formArrayName="infoProduct" class="mb-3">
+    <div class="row">
+        
+    </div>
+</fieldset>
+<!--<table #contenidorRubrica border="1">
+    <tr>
         <td>            
             <form [formGroup] ="this.criteriForm" (ngSubmit)="onSubmit()">
                 <label>Nom criteri: 
@@ -20,7 +31,10 @@
             <button #botoValoracio [disabled]="!this.criteriForm.valid">
                 Afegir Valoracio
             </button>
+            <button #botoCriteri [disabled]="!this.criteriForm.valid" (click)="afegirCriteri()">
+                +
+            </button>
         </td>
     </tr>
     
-</table>
+</table>-->
