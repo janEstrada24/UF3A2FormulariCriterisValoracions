@@ -1,19 +1,26 @@
-<p>rubrica works!</p>
-
-<div #contenidorRubrica>
-    <div>
-        <label> Criteri:
-            <input type="number" placeholder="Afegeix una nota">
-        </label>
-    </div>
-    <button #botoValoracio (click)="afegirCriteri()">
-        +
-    </button>
-    <app-criteri></app-criteri>
-</div>
-
-<br>
-
-<button #botoCriteri (click)="afegirCriteri()">
-    +
-</button>
+<form [formGroup]="rubricaForm">
+    <table border="1">
+        <div formArrayName="criteris">
+            <div  *ngFor="let criteri of criteris.controls; let i=index">
+                <label> Nom:
+                    <input type="text" [formControlName]="i" />
+                </label>
+    
+                <div class="row" [formGroupName]="j" *ngFor="let valoracio of valoracions.controls; let j=index">
+                    <label> Nom:
+                        <input type="text" [formControlName]="j" />
+                    </label>
+                    <label> Nota:
+                        <input type="number" [formControlName]="j" />
+                    </label>
+                    <button (click)="addValoracio()">Add</button>
+                    <button (click)="removeValoracio(i)">Remove</button>
+                </div>
+    
+                <button (click)="addCriteri()">Add</button>
+                <button (click)="removeCriteri(i)">Remove</button>
+    
+            </div>
+        </div>
+    </table>
+</form>

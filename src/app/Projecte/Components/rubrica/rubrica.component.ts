@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Rubrica } from '../../Model/Entities/Implementations/Rubrica';
 
 @Component({
@@ -9,60 +10,69 @@ import { Rubrica } from '../../Model/Entities/Implementations/Rubrica';
 export class RubricaComponent implements OnInit {
 
   rubrica: Rubrica = new Rubrica();
-  @ViewChild('contenidorRubrica') div: ElementRef;
 
-  constructor(private renderer: Renderer2) {
+  rubricaForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private renderer: Renderer2) {
   }
 
   ngOnInit(): void {
+    this.initRubrica();
   }
 
-  public getLongitud() { return this.rubrica.getLongitudCriteris(); }
-
-  afegirCriteri() {
-    const div: HTMLDivElement = this.renderer.createElement('div');
-
-    const tr: HTMLTableRowElement = this.renderer.createElement('tr');
-    const td: HTMLTableCellElement = this.renderer.createElement('td');
-
-    const hr: HTMLHRElement = this.renderer.createElement('hr');
-    const br: HTMLBRElement = this.renderer.createElement('br'); 
-
-    const labelC: HTMLLabelElement = this.renderer.createElement('label');
-    labelC.innerHTML = "Criteri: ";
-    
-    const input: HTMLInputElement = this.renderer.createElement('input');
-    input.placeholder = "Afegeix una nota";
-    input.type = "number";
-    
-    const labelV: HTMLLabelElement = this.renderer.createElement('label');
-    labelV.innerHTML = "Valoració: "
-
-    const botoValoracio: HTMLButtonElement = this.renderer.createElement('button');
-    botoValoracio.innerHTML = "+";
-    botoValoracio.onclick;
-
-    labelC.appendChild(input);
-    div.appendChild(hr);
-    div.appendChild(labelC);
-    div.appendChild(br);
-    div.appendChild(botoValoracio);
-
-    this.renderer.appendChild(this.div.nativeElement, div);
+  initRubrica() {
+    this.rubricaForm = this.fb.group({
+      criteris: this.fb.array([this.newCriteri]),
+    })
   }
 
-  escriuJSON() {
-    const myObj = { name: "John", age: 31, city: "New York" };
-    const myJSON = JSON.stringify(myObj);
-    localStorage.setItem("testJSON", myJSON);
-    
+  get newCriteri(): FormGroup {
+    return this.fb.group({
+      nom: new FormControl('', Validators.required),
+      valoracions: this.fb.array([this.newValoracio])
+    })
   }
 
-  llegeixJSON() {
-
+  get newValoracio(): FormGroup {
+    return this.fb.group({
+      nom: new FormControl(''),
+      nota: new FormControl(0),
+    })
   }
 
-  getRubrica() {
-    return this.rubrica;
+  get criteris(): FormArray {
+    return this.rubricaForm.get("criteris") as FormArray;
+  }
+
+  get valoracions(): FormArray {
+    return this.rubricaForm.get("valoracions") as FormArray;
+  }
+
+  addCriteri() {
+    this.criteris.push(
+        this.fb.group({
+          nom: new FormControl('', Validators.required),
+          valoracions: this.fb.array([this.newValoracio])
+        })
+      )
+  }
+
+  addValoracio() {
+    this.valoracions.push(
+      this.fb.group({
+        nom: [''],
+        nota: [0],
+      })
+    )
+  }
+
+  removeCriteri(index: number) {
+    const control = <FormArray>this.criteris;
+    control.removeAt(index);
+  }
+
+  removeValoracio(index: number) {
+    const control = <FormArray>this.valoracions;
+    control.removeAt(index);
   }
 }

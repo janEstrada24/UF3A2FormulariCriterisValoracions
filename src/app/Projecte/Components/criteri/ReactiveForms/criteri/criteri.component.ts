@@ -32,7 +32,7 @@ export class CriteriComponent implements OnInit {
     ]),
   });
 
-  get newInfo(): FormGroup {
+  get newValoracio(): FormGroup {
     return this.fb.group({
       nom: [''],
       nota: ['0'],
@@ -43,6 +43,11 @@ export class CriteriComponent implements OnInit {
     return this.criteriForm.get('valoracions') as FormArray;
   }
 
+  addValoracio() {
+    this.infos.push(this.newValoracio);
+  }
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
   afegirCriteri() {
     
     let criteri: Criteri = new Criteri("");
@@ -88,9 +93,6 @@ export class CriteriComponent implements OnInit {
       botoCriteri.disabled = false;
     }
 
-/*    let prova = localStorage.getItem("inputCriteri");
-    input.addEventListener("change", () => this.mostrar(prova));*/
-    
     this.renderer.appendChild(this.table.nativeElement, fila);
 
   }
@@ -130,9 +132,7 @@ export class CriteriComponent implements OnInit {
     labelRadio.appendChild(inputRadio);
     casella.appendChild(labelRadio);
 
-    //div.appendChild(botoValoracio);
     fila.appendChild(casella);
-    //this.renderer.appendChild(this.table.nativeElement, fila);
   }
 
   getControlNomCriteri():any {

@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CriteriComponent } from './Projecte/Components/criteri/ReactiveForms/criteri/criteri.component';
-import { ProvaformarrayComponent } from './Projecte/Components/provaformarray/provaformarray.component';
+import { RubricaComponent } from './Projecte/Components/rubrica/rubrica.component';
 
 const routes: Routes = [
   { path: 'criteri', component: CriteriComponent },
-  { path: 'prova', component: ProvaformarrayComponent },
-
+  { path: 'rubrica', component: RubricaComponent },
 ];
 
 @NgModule({
